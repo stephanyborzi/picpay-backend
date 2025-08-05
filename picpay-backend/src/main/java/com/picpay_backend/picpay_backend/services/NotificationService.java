@@ -1,6 +1,8 @@
 package com.picpay_backend.picpay_backend.services;
 
 import com.picpay_backend.picpay_backend.domain.user.User;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -14,28 +16,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public class NotificationService {
+@Data
+@AllArgsConstructor
 
+public class NotificationService {
     @Autowired
     private RestTemplate restTemplate;
     private String email;
     private String message;
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
 
     public void sendNotification(User user, String message) {
         String email = user.getEmail();
@@ -59,13 +47,13 @@ public class NotificationService {
 
             if (response.getStatusCode().is2xxSuccessful() && response.getBody() != null) {
                 Map<String, Object> responseBody = response.getBody();
-                System.out.println("Notificação enviada com sucesso. Detalhes: " + responseBody);
+                System.out.println("Notification send successfully. Details: " + responseBody);
             } else {
-                System.err.println("Falha ao enviar notificação. Status: " + response.getStatusCode());
+                System.err.println("Fail to send notification. Status: " + response.getStatusCode());
             }
 
         } catch (RestClientException e) {
-            System.err.println("Erro ao enviar notificação: " + e.getMessage());
+            System.err.println("Erro to send notification: " + e.getMessage());
         }
     }
 }

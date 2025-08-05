@@ -37,7 +37,7 @@ public class TransactionService {
 
             boolean isAuthorized = authorizeTransaction(sender, transactionDTO.value());
             if (!isAuthorized) {
-                throw new IllegalStateException("Transação não autorizada pelo serviço externo.");
+                throw new IllegalStateException("Transation not authorized by external service.");
             }
 
             Transaction newTransaction = new Transaction();
@@ -54,7 +54,7 @@ public class TransactionService {
 
 
         } catch (Exception e) {
-            throw new Exception("Erro ao criar a transação: " + e.getMessage(), e);
+            throw new Exception("ERRO to create a transaction: " + e.getMessage(), e);
         }
     }
 
@@ -76,7 +76,7 @@ public class TransactionService {
             }
 
         } catch (RestClientException e) {
-            System.err.println("Erro durante a comunicação com o serviço externo: " + e.getMessage());
+            System.err.println("ERRO in a communication with a external service: " + e.getMessage());
         }
         return false;
     }

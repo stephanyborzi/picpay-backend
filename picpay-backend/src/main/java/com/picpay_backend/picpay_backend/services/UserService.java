@@ -16,15 +16,15 @@ public class UserService {
 
     public void validateTransaction(User sender, BigDecimal amount) throws Exception {
         if (sender.getUserType().equals(UserType.MERCHANT)) {
-            throw new Exception("Usuário do tipo lojista não realiza transações bancárias.");
+            throw new Exception(".");
         }
         if (sender.getBalance().compareTo(amount) < 0) {
-            throw new Exception("Saldo insuficiente para realizar a transação.");
+            throw new Exception("Balance not enought to the transaction.");
         }
     }
 
     public User findUserById(Long id) throws Exception {
-        return this.repository.findUserById(id).orElseThrow(() -> new Exception("Id do usuario nao encontrado"));
+        return this.repository.findUserById(id).orElseThrow(() -> new Exception("User ID not found"));
     }
 
     public void saveUser(User user){

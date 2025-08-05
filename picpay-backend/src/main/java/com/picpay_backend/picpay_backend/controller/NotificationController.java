@@ -26,10 +26,10 @@ public class NotificationController {
 
             notificationService.sendNotification(user, request.getMessage());
 
-            return ResponseEntity.ok("Notificação enviada com sucesso!");
+            return ResponseEntity.ok("Notification send " + "successfully!");
 
         } catch (Exception e) {
-            return ResponseEntity.status(500).body("Erro ao enviar notificação: " + e.getMessage());
+            return ResponseEntity.status(500).body("Erro to send notification " + e.getMessage());
         }
     }
 }
